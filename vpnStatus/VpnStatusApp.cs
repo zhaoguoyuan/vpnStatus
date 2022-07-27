@@ -55,7 +55,7 @@ namespace vpnStatus {
             var proc = new Process {
                 StartInfo = new ProcessStartInfo {
                     FileName = "CMD.EXE",
-                    Arguments = "/C netsh interface show interface",
+                    Arguments = "/C netsh interface ipv4 show interface",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true
@@ -68,7 +68,7 @@ namespace vpnStatus {
             while (!proc.StandardOutput.EndOfStream) {
                 string line = proc.StandardOutput.ReadLine();
 
-                if (line.Contains(vpnName) && line.Contains(" Connected")) {
+                if (line.Contains(vpnName) && line.Contains(" connected")) {
                     found = true;
                     break;
                 }
